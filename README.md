@@ -2,6 +2,8 @@
 
 A modern, full-stack web application for generating AI images using multiple models through OpenRouter. Built with TanStack Start, React, TypeScript, and shadcn/ui.
 
+![Studio Screenshot](./assets/screenshot.png)
+
 ## Features
 
 - 🎨 **Multiple AI Models**: Generate images using various models from OpenAI, Google, ByteDance Seed, and Black Forest Labs (FLUX)
@@ -112,6 +114,7 @@ The application will be available at `http://localhost:3000`.
 ### Mobile Experience
 
 On mobile devices:
+
 - Use the sticky "Create Generation" button at the bottom
 - Access the generation form via a bottom drawer
 - Swipe through images in the gallery
@@ -151,15 +154,15 @@ src/
 
 ## Environment Variables Reference
 
-| Variable | Description | Required |
-|----------|-------------|----------|
-| `DATABASE_URL` | SQLite database connection string | Yes |
-| `OPENROUTER_API_KEY` | API key for OpenRouter image generation | Yes |
-| `R2_ACCOUNT_ID` | Cloudflare R2 account ID | Yes |
-| `R2_ACCESS_KEY_ID` | Cloudflare R2 access key ID | Yes |
-| `R2_SECRET_ACCESS_KEY` | Cloudflare R2 secret access key | Yes |
-| `BETTER_AUTH_URL` | Base URL for authentication callbacks | No |
-| `BETTER_AUTH_SECRET` | Secret key for Better Auth | No |
+| Variable               | Description                             | Required |
+| ---------------------- | --------------------------------------- | -------- |
+| `DATABASE_URL`         | SQLite database connection string       | Yes      |
+| `OPENROUTER_API_KEY`   | API key for OpenRouter image generation | Yes      |
+| `R2_ACCOUNT_ID`        | Cloudflare R2 account ID                | Yes      |
+| `R2_ACCESS_KEY_ID`     | Cloudflare R2 access key ID             | Yes      |
+| `R2_SECRET_ACCESS_KEY` | Cloudflare R2 secret access key         | Yes      |
+| `BETTER_AUTH_URL`      | Base URL for authentication callbacks   | No       |
+| `BETTER_AUTH_SECRET`   | Secret key for Better Auth              | No       |
 
 ## Contributing
 
