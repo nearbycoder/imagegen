@@ -39,7 +39,7 @@ A modern, full-stack web application for generating AI images using multiple mod
 
 ```bash
 git clone <repository-url>
-cd 2025-12-29-imagegen
+cd imagegen
 ```
 
 ### 2. Install dependencies
