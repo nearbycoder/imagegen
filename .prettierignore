@@ -1,0 +1,15 @@
+package-lock.json
+pnpm-lock.yaml
+yarn.lock
+bun.lock
+node_modules
+dist
+dist-ssr
+.output
+.vinxi
+.nitro
+.tanstack
+generated
+*.db
+*.local
+.DS_Store
