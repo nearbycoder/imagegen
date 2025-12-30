@@ -88,14 +88,13 @@ export const ImageCard = memo(
         <Card
           className={`group relative overflow-hidden cursor-default border-border/50 bg-transparent p-0 ${aspectRatioClass}`}
         >
-          <div className="relative w-full h-full bg-card">
+          <div className="relative w-full h-full bg-muted overflow-hidden">
             {/* Shimmer skeleton */}
-            <div className="absolute inset-0 bg-gradient-to-r from-muted via-muted/50 to-muted animate-shimmer">
-              <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent animate-shimmer-slide" />
-            </div>
+            <div className="absolute inset-0 bg-muted" />
+            <div className="absolute inset-0 animate-shimmer-slide shimmer-overlay" />
 
             {/* Model name overlay */}
-            <div className="absolute bottom-0 left-0 right-0 p-1.5 sm:p-2">
+            <div className="absolute bottom-0 left-0 right-0 p-1.5 sm:p-2 z-10">
               <div className=" rounded-md px-2 sm:px-3 py-1 sm:py-1.5">
                 <span className="text-[10px] sm:text-xs font-medium text-white truncate block">
                   {image.modelName}

@@ -63,6 +63,7 @@ OPENROUTER_API_KEY="your-openrouter-api-key"
 
 # Cloudflare R2 (required for image storage)
 R2_ACCOUNT_ID="your-r2-account-id"
+R2_BUCKET_NAME="your-r2-bucket-name"
 R2_ACCESS_KEY_ID="your-r2-access-key-id"
 R2_SECRET_ACCESS_KEY="your-r2-secret-access-key"
 
@@ -159,6 +160,7 @@ src/
 | `DATABASE_URL`         | SQLite database connection string       | Yes      |
 | `OPENROUTER_API_KEY`   | API key for OpenRouter image generation | Yes      |
 | `R2_ACCOUNT_ID`        | Cloudflare R2 account ID                | Yes      |
+| `R2_BUCKET_NAME`       | Cloudflare R2 bucket name               | Yes      |
 | `R2_ACCESS_KEY_ID`     | Cloudflare R2 access key ID             | Yes      |
 | `R2_SECRET_ACCESS_KEY` | Cloudflare R2 secret access key         | Yes      |
 | `BETTER_AUTH_URL`      | Base URL for authentication callbacks   | No       |

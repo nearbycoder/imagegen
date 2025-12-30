@@ -12,8 +12,6 @@ async function main() {
       status: 'completed',
     },
   })
-
-  console.log(`Updated ${result.count} generations to completed status`)
 }
 
 main()

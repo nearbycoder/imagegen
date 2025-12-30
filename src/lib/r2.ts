@@ -194,7 +194,7 @@ export async function generatePresignedUploadUrl(
   })
 
   const uploadUrl = await getSignedUrl(r2Client, command, { expiresIn: 3600 })
-  const publicUrl = `${process.env.R2_PUBLIC_URL}/${key}`
+  const publicUrl = `https://${process.env.R2_ACCOUNT_ID}.r2.cloudflarestorage.com/${process.env.R2_BUCKET_NAME}/${key}`
 
   return {
     uploadUrl,

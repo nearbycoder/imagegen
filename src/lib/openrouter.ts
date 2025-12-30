@@ -106,19 +106,8 @@ export async function generateImage({
   const rawImages = data.choices[0]?.message?.images || []
 
   if (rawImages.length === 0) {
-    console.warn('No images returned from OpenRouter for model:', modelId)
-    console.log('Full response:', JSON.stringify(data, null, 2))
     return []
   }
-
-  console.log(`Received ${rawImages.length} image(s) from ${modelId}`)
-  console.log('Image type:', typeof rawImages[0])
-  console.log(
-    'Image preview:',
-    typeof rawImages[0] === 'string'
-      ? rawImages[0].substring(0, 100)
-      : rawImages[0],
-  )
 
   // Normalize images - handle both string format and object format
   const images = rawImages
@@ -134,8 +123,6 @@ export async function generateImage({
       }
     })
     .filter(Boolean)
-
-  console.log(`Normalized ${images.length} image(s) to URLs/base64 strings`)
 
   return images
 }
