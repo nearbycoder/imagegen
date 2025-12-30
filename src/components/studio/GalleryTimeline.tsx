@@ -1,10 +1,16 @@
 import { useState } from 'react'
 import { format, formatDistanceToNow } from 'date-fns'
-import { Clock, Image as ImageIcon } from 'lucide-react'
+import {
+  ChevronDown,
+  ChevronUp,
+  Clock,
+  Image as ImageIcon,
+} from 'lucide-react'
 import { ImageCard } from './ImageCard'
 import { ImageDialog } from './ImageDialog'
 import { ScrollArea } from '@/components/ui/scroll-area'
 import { Badge } from '@/components/ui/badge'
+import { Button } from '@/components/ui/button'
 
 interface Generation {
   id: string
@@ -28,6 +34,9 @@ interface GalleryTimelineProps {
 
 export function GalleryTimeline({ generations }: GalleryTimelineProps) {
   const [selectedImageId, setSelectedImageId] = useState<string | null>(null)
+  const [expandedPrompts, setExpandedPrompts] = useState<Set<string>>(
+    new Set(),
+  )
 
   // Combine real and optimistic generations, sort by date (newest first)
   const allGenerations = [...generations].sort((a, b) => {
@@ -134,17 +143,106 @@ export function GalleryTimeline({ generations }: GalleryTimelineProps) {
                             {/* Generation Header */}
                             <div className="space-y-2">
                               <div className="flex items-start justify-between gap-4">
-                                <div className="flex-1 min-w-0">
-                                  <p className="text-sm font-medium text-foreground leading-relaxed">
-                                    {generation.prompt}
-                                  </p>
+                                <div className="flex-1 min-w-0 max-w-3xl">
+                                  <div className="space-y-1.5">
+                                    <div className="relative">
+                                      <p
+                                        className={`text-sm font-medium text-foreground leading-relaxed ${
+                                          expandedPrompts.has(generation.id)
+                                            ? ''
+                                            : 'line-clamp-3'
+                                        }`}
+                                      >
+                                        {generation.prompt}
+                                      </p>
+                                      {generation.prompt.length > 150 &&
+                                        !expandedPrompts.has(generation.id) && (
+                                          <div className="absolute bottom-0 right-0 h-6 w-20 bg-gradient-to-l from-background to-transparent pointer-events-none" />
+                                        )}
+                                    </div>
+                                    {generation.prompt.length > 150 && (
+                                      <Button
+                                        variant="ghost"
+                                        size="sm"
+                                        className="h-6 px-2 text-xs text-muted-foreground hover:text-foreground -ml-2"
+                                        onClick={() => {
+                                          const newExpanded = new Set(
+                                            expandedPrompts,
+                                          )
+                                          if (
+                                            expandedPrompts.has(generation.id)
+                                          ) {
+                                            newExpanded.delete(generation.id)
+                                          } else {
+                                            newExpanded.add(generation.id)
+                                          }
+                                          setExpandedPrompts(newExpanded)
+                                        }}
+                                      >
+                                        {expandedPrompts.has(generation.id) ? (
+                                          <>
+                                            <ChevronUp className="h-3 w-3 mr-1" />
+                                            Show less
+                                          </>
+                                        ) : (
+                                          <>
+                                            <ChevronDown className="h-3 w-3 mr-1" />
+                                            Show more
+                                          </>
+                                        )}
+                                      </Button>
+                                    )}
+                                  </div>
                                   {generation.negativePrompt && (
-                                    <p className="text-xs text-muted-foreground mt-1.5 leading-relaxed">
-                                      <span className="font-medium">
-                                        Negative:{' '}
-                                      </span>
-                                      {generation.negativePrompt}
-                                    </p>
+                                    <div className="mt-1.5 space-y-1">
+                                      <p
+                                        className={`text-xs text-muted-foreground leading-relaxed ${
+                                          expandedPrompts.has(
+                                            `${generation.id}-negative`,
+                                          )
+                                            ? ''
+                                            : 'line-clamp-2'
+                                        }`}
+                                      >
+                                        <span className="font-medium">
+                                          Negative:{' '}
+                                        </span>
+                                        {generation.negativePrompt}
+                                      </p>
+                                      {generation.negativePrompt.length > 100 && (
+                                        <Button
+                                          variant="ghost"
+                                          size="sm"
+                                          className="h-5 px-2 text-xs text-muted-foreground hover:text-foreground -ml-2"
+                                          onClick={() => {
+                                            const newExpanded = new Set(
+                                              expandedPrompts,
+                                            )
+                                            const key = `${generation.id}-negative`
+                                            if (expandedPrompts.has(key)) {
+                                              newExpanded.delete(key)
+                                            } else {
+                                              newExpanded.add(key)
+                                            }
+                                            setExpandedPrompts(newExpanded)
+                                          }}
+                                        >
+                                          {expandedPrompts.has(
+                                            `${generation.id}-negative`,
+                                          ) ? (
+                                            <>
+                                              <ChevronUp className="h-3 w-3 mr-1" />
+                                              Show less
+                                            </>
+                                          ) : (
+                                            <>
+                                              <ChevronDown className="h-3 w-3 mr-1" />
+                                              Show more
+                                            </>
+                                          )}
+                                        </Button>
+                                      )}
+                                    </div>
                                   )}
                                 </div>
                                 <div className="flex items-center gap-2 shrink-0">
@@ -189,10 +287,12 @@ export function GalleryTimeline({ generations }: GalleryTimelineProps) {
                                   <ImageCard
                                     key={image.id}
                                     image={{
-                                      ...image,
-                                      generationId: generation.id,
-                                      prompt: generation.prompt,
+                                      id: image.id,
+                                      r2Url: image.r2Url,
+                                      modelName: image.modelName,
                                       aspectRatio: generation.aspectRatio,
+                                      width: image.width,
+                                      height: image.height,
                                       isPlaceholder:
                                         image.isPlaceholder || false,
                                     }}
