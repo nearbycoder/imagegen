@@ -4,7 +4,7 @@ interface GenerateImageParams {
   prompt: string
   modelId: string
   aspectRatio?: string
-  referenceImageUrls?: string[]
+  referenceImageUrls?: Array<string>
 }
 
 interface ImageUrlObject {
@@ -19,7 +19,7 @@ interface OpenRouterResponse {
     message: {
       role: string
       content?: string
-      images?: (string | ImageUrlObject)[]
+      images?: Array<string | ImageUrlObject>
     }
   }>
   error?: {
@@ -33,7 +33,7 @@ export async function generateImage({
   modelId,
   aspectRatio,
   referenceImageUrls,
-}: GenerateImageParams): Promise<string[]> {
+}: GenerateImageParams): Promise<Array<string>> {
   const apiKey = process.env.OPENROUTER_API_KEY
 
   if (!apiKey) {
@@ -125,7 +125,7 @@ export async function generateImage({
     .map((img) => {
       if (typeof img === 'string') {
         return img
-      } else if (img && typeof img === 'object' && 'image_url' in img) {
+      } else if (typeof img === 'object' && 'image_url' in img) {
         // OpenRouter returns: { type: 'image_url', image_url: { url: '...' } }
         return img.image_url.url
       } else {

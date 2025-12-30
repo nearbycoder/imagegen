@@ -1,12 +1,12 @@
 import { Link, createFileRoute, useRouter } from '@tanstack/react-router'
+import { Mountain } from 'lucide-react'
+import { useState } from 'react'
+import { toast } from 'sonner'
 import { Input } from '@/components/ui/input'
 import { Button } from '@/components/ui/button'
 import { Label } from '@/components/ui/label'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
-import { Mountain } from 'lucide-react'
 import { authClient } from '@/lib/auth-client'
-import { useState } from 'react'
-import { toast } from 'sonner'
 
 export const Route = createFileRoute('/signup')({
   component: RouteComponent,

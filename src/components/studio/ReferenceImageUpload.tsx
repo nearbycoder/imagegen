@@ -1,9 +1,9 @@
 import { useCallback, useState } from 'react'
 import { useDropzone } from 'react-dropzone'
+import { ImagePlus, X } from 'lucide-react'
+import { toast } from 'sonner'
 import { Label } from '@/components/ui/label'
 import { Button } from '@/components/ui/button'
-import { X, ImagePlus } from 'lucide-react'
-import { toast } from 'sonner'
 import { uploadReferenceImageFn } from '@/server-functions/image-studio'
 
 interface ReferenceImage {
@@ -13,8 +13,8 @@ interface ReferenceImage {
 }
 
 interface ReferenceImageUploadProps {
-  images: ReferenceImage[]
-  onImagesChange: (images: ReferenceImage[]) => void
+  images: Array<ReferenceImage>
+  onImagesChange: (images: Array<ReferenceImage>) => void
 }
 
 export function ReferenceImageUpload({
@@ -45,7 +45,7 @@ export function ReferenceImageUpload({
   }
 
   const onDrop = useCallback(
-    async (acceptedFiles: File[]) => {
+    async (acceptedFiles: Array<File>) => {
       if (acceptedFiles.length === 0) return
 
       setUploading(true)

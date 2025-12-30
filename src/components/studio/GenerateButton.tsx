@@ -1,12 +1,12 @@
-import { Button } from '@/components/ui/button'
 import { Loader2, Sparkles } from 'lucide-react'
+import { Button } from '@/components/ui/button'
 
 interface GenerateButtonProps {
   onClick: () => void
   isGenerating: boolean
   disabled: boolean
   selectedModelsCount?: number
-  aspectRatios?: string[]
+  aspectRatios?: Array<string>
 }
 
 export function GenerateButton({

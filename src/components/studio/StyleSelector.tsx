@@ -1,6 +1,6 @@
+import { Check, Palette } from 'lucide-react'
 import { Label } from '@/components/ui/label'
 import { Badge } from '@/components/ui/badge'
-import { Palette, Check } from 'lucide-react'
 
 export interface ArtisticStyle {
   id: string
@@ -9,7 +9,7 @@ export interface ArtisticStyle {
   description?: string
 }
 
-export const ARTISTIC_STYLES: ArtisticStyle[] = [
+export const ARTISTIC_STYLES: Array<ArtisticStyle> = [
   {
     id: 'photorealistic',
     name: 'Photorealistic',
@@ -97,8 +97,8 @@ export const ARTISTIC_STYLES: ArtisticStyle[] = [
 ]
 
 interface StyleSelectorProps {
-  selectedStyles: string[]
-  onSelectionChange: (selected: string[]) => void
+  selectedStyles: Array<string>
+  onSelectionChange: (selected: Array<string>) => void
 }
 
 export function StyleSelector({

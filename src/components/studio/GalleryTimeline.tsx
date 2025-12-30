@@ -6,18 +6,6 @@ import { ImageDialog } from './ImageDialog'
 import { ScrollArea } from '@/components/ui/scroll-area'
 import { Badge } from '@/components/ui/badge'
 
-interface Image {
-  id: string
-  r2Url: string
-  modelName: string
-  generationId: string
-  prompt: string
-  aspectRatio: string
-  width?: number | null
-  height?: number | null
-  isPlaceholder?: boolean
-}
-
 interface Generation {
   id: string
   prompt: string
@@ -30,18 +18,7 @@ interface Generation {
     modelName: string
     width?: number | null
     height?: number | null
-  }>
-}
-
-interface OptimisticGeneration {
-  id: string
-  prompt: string
-  aspectRatio: string
-  createdAt: Date
-  images: Array<{
-    id: string
-    modelName: string
-    isPlaceholder: true
+    isPlaceholder?: boolean
   }>
 }
 
@@ -80,7 +57,7 @@ export function GalleryTimeline({ generations }: GalleryTimelineProps) {
   const groupedGenerations = allGenerations.reduce(
     (acc, gen) => {
       const dateKey = format(new Date(gen.createdAt), 'yyyy-MM-dd')
-      if (!acc[dateKey]) {
+      if (!(dateKey in acc)) {
         acc[dateKey] = []
       }
       acc[dateKey].push(gen)

@@ -1,7 +1,7 @@
+import { Check, Zap } from 'lucide-react'
+import { ProviderIcon } from './ProviderIcon'
 import { Label } from '@/components/ui/label'
 import { Badge } from '@/components/ui/badge'
-import { Zap, Check } from 'lucide-react'
-import { ProviderIcon } from './ProviderIcon'
 
 interface Model {
   id: string
@@ -10,9 +10,9 @@ interface Model {
 }
 
 interface ModelSelectorProps {
-  models: Model[]
-  selectedModels: string[]
-  onSelectionChange: (selected: string[]) => void
+  models: Array<Model>
+  selectedModels: Array<string>
+  onSelectionChange: (selected: Array<string>) => void
 }
 
 export function ModelSelector({

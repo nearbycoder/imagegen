@@ -1,7 +1,7 @@
 import {
-  S3Client,
-  PutObjectCommand,
   GetObjectCommand,
+  PutObjectCommand,
+  S3Client,
 } from '@aws-sdk/client-s3'
 import { getSignedUrl } from '@aws-sdk/s3-request-presigner'
 
@@ -26,9 +26,8 @@ interface UploadResult {
  * Upload a base64-encoded image to R2
  */
 export async function uploadBase64Image(
-  base64Data: string | any,
+  base64Data: string,
   folder: string,
-  fileName?: string,
 ): Promise<UploadResult> {
   if (!process.env.R2_BUCKET_NAME) {
     throw new Error('R2_BUCKET_NAME is not configured')

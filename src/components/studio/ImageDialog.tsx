@@ -1,3 +1,7 @@
+import { Download, Trash2 } from 'lucide-react'
+import { format } from 'date-fns'
+import { toast } from 'sonner'
+import { useRouter } from '@tanstack/react-router'
 import {
   Dialog,
   DialogContent,
@@ -6,11 +10,7 @@ import {
 } from '@/components/ui/dialog'
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
-import { Download, Trash2 } from 'lucide-react'
-import { format } from 'date-fns'
-import { toast } from 'sonner'
 import { deleteGenerationFn } from '@/server-functions/image-studio'
-import { useRouter } from '@tanstack/react-router'
 
 interface Image {
   id: string

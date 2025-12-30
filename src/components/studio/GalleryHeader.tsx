@@ -1,5 +1,5 @@
+import { Clock, LayoutGrid } from 'lucide-react'
 import { Tabs, TabsList, TabsTrigger } from '@/components/ui/tabs'
-import { LayoutGrid, Clock } from 'lucide-react'
 
 interface GalleryHeaderProps {
   totalCount: number
@@ -26,7 +26,7 @@ export function GalleryHeader({
         </h2>
       </div>
 
-      <Tabs value={viewMode} onValueChange={(v) => onViewModeChange(v as any)}>
+      <Tabs value={viewMode} onValueChange={(v) => onViewModeChange(v)}>
         <TabsList className="bg-muted border-border h-9 sm:h-10">
           <TabsTrigger
             value="grid"

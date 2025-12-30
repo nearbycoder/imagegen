@@ -44,7 +44,7 @@ export const AVAILABLE_MODELS = [
  * Get available models
  */
 export const getAvailableModelsFn = createServerFn({ method: 'GET' }).handler(
-  async () => {
+  () => {
     return AVAILABLE_MODELS
   },
 )

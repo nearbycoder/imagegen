@@ -34,7 +34,7 @@ export const Route = createFileRoute('/api/generation/$id/stream')({
         let pollInterval: NodeJS.Timeout | null = null
 
         const stream = new ReadableStream({
-          async start(controller) {
+          start(controller) {
             const encoder = new TextEncoder()
 
             const sendEvent = (data: string) => {
